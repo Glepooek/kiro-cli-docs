@@ -19,6 +19,7 @@
 ```
 
 交互式选择器显示:
+
 - 每轮的提示预览
 - 该时刻的上下文窗口使用百分比
 - 轮次按最新优先列出，便于快速访问最近的历史
@@ -40,8 +41,8 @@
 
 ## 相关
 
-- [会话管理](/docs/cli/chat/session-management/) — 保存、加载和恢复会话
-- [斜杠命令参考](/docs/cli/reference/slash-commands/#rewind) — 快速命令参考
+- [会话管理](../Chat/1_session-management.md) — 保存、加载和恢复会话
+- [斜杠命令参考](../reference/2_slash-commands.md/#rewind) — 快速命令参考
 
 ---
 

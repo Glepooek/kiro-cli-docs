@@ -30,7 +30,7 @@ kiro-cli settings chat.keybindings.closeMenu "ctrl+["
 kiro-cli settings chat.keybindings.quit "ctrl+shift+q"
 ```
 
-参见[键盘绑定 (终端 UI)](/docs/cli/reference/settings/#key-bindings-terminal-ui) 获取完整参考。
+参见[键盘绑定 (终端 UI)](../reference/5_settings.md/#key-bindings-terminal-ui) 获取完整参考。
 
 ### `/settings terminal`
 
