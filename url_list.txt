@@ -38,7 +38,7 @@ https://kiro.dev/docs/cli/mcp/security/ 5_security.md
 https://kiro.dev/docs/cli/steering/ steering.md
 
 # docs/
-https://kiro.dev/docs/cli/skills/ agent_skills.md
+https://kiro.dev/docs/cli/skills/ agent-skills.md
 
 # docs/
 https://kiro.dev/docs/cli/acp/ acp.md
