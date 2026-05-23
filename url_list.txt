@@ -1,0 +1,73 @@
+# docs/chat
+https://kiro.dev/docs/cli/chat/ 0_chat_overview.md
+https://kiro.dev/docs/cli/chat/session-management/ 1_session-management.md
+https://kiro.dev/docs/cli/chat/effort/ 2_effort.md
+https://kiro.dev/docs/cli/chat/rewind/ 3_rewind.md
+https://kiro.dev/docs/cli/chat/settings/ 4_in_session-settings.md
+https://kiro.dev/docs/cli/chat/subagents/ 6_subagents.md
+https://kiro.dev/docs/cli/chat/planning-agent/ 7_planning-agent.md
+https://kiro.dev/docs/cli/chat/guide/ 8_guide-agent.md
+https://kiro.dev/docs/cli/chat/help-agent/ 9_help-agent.md
+https://kiro.dev/docs/cli/chat/manage-prompts/ 10_manage-prompts.md
+https://kiro.dev/docs/cli/chat/file-references 11_file-references.md
+https://kiro.dev/docs/cli/chat/context/ 12_context.md
+https://kiro.dev/docs/cli/chat/responding/ 13_responding.md
+https://kiro.dev/docs/cli/chat/permissions/ 14_permissions.md
+https://kiro.dev/docs/cli/chat/git-aware-selection/ 15_git-aware-selection.md
+https://kiro.dev/docs/cli/chat/images/ 16_images.md
+https://kiro.dev/docs/cli/chat/security/ 17_security.md
+https://kiro.dev/docs/cli/chat/configuration/ 18_configuration.md
+https://kiro.dev/docs/cli/chat/diff-tools/ 19_diff-tools.md
+
+# docs/custom-agents/
+https://kiro.dev/docs/cli/custom-agents/ 0_custom-agents.md
+https://kiro.dev/docs/cli/custom-agents/creating/ 1_creating.md
+https://kiro.dev/docs/cli/custom-agents/configuration-reference/ 2_configuration-reference.md
+https://kiro.dev/docs/cli/custom-agents/examples/ 3_examples.md
+https://kiro.dev/docs/cli/custom-agents/troubleshooting/ 4_troubleshooting.md
+
+# docs/mcp/
+https://kiro.dev/docs/cli/mcp/ 0_mcp.md
+https://kiro.dev/docs/cli/mcp/configuration/ 1_configuration.md
+https://kiro.dev/docs/cli/mcp/registry/ 2_registry.md
+https://kiro.dev/docs/cli/mcp/tool-search/ 3_tool-search.md
+https://kiro.dev/docs/cli/mcp/examples/ 4_examples.md
+https://kiro.dev/docs/cli/mcp/security/ 5_security.md
+
+# docs/
+https://kiro.dev/docs/cli/steering/ steering.md
+
+# docs/
+https://kiro.dev/docs/cli/skills/ agent_skills.md
+
+# docs/
+https://kiro.dev/docs/cli/acp/ acp.md
+
+# docs/
+https://kiro.dev/docs/cli/headless/ headless.md
+
+# docs/experimental/
+https://kiro.dev/docs/cli/experimental/ 0_experimental.md
+https://kiro.dev/docs/cli/experimental/knowledge-management/ 1_knowledge-management.md
+https://kiro.dev/docs/cli/experimental/tangent-mode/ 2_tangent-mode.md
+https://kiro.dev/docs/cli/experimental/todo-lists/ 3_todo-lists.md
+https://kiro.dev/docs/cli/experimental/thinking/ 4_thinking.md
+https://kiro.dev/docs/cli/experimental/checkpointing/ 5_checkpointing.md
+https://kiro.dev/docs/cli/experimental/delegate/ 6_delegate.md
+
+# docs/
+https://kiro.dev/docs/cli/hooks/ hooks.md
+
+# docs/
+https://kiro.dev/docs/cli/autocomplete/ autocomplete.md
+
+# docs/
+https://kiro.dev/docs/cli/code-intelligence/ code-intelligence.md
+
+# docs/reference
+https://kiro.dev/docs/cli/reference/cli-commands/ 1_cli-commands.md
+https://kiro.dev/docs/cli/reference/slash-commands/ 2_slash-commands.md
+https://kiro.dev/docs/cli/reference/built-in-tools/ 3_built-in-tools.md
+https://kiro.dev/docs/cli/reference/exit-codes/ 4_exit-codes.md
+https://kiro.dev/docs/cli/reference/settings/ 5_settings.md
+
