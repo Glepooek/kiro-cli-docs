@@ -92,13 +92,16 @@ kiro-cli settings chat.enableKnowledge true
 | 研究论文 | Best | 基于概念的搜索 |
 | 混合内容 | Best | 更好的整体搜索体验 |
 
-### 默认行为
+### 默认模式行为
 
 如果不指定 `--index-type`，系统使用您配置的默认值：
 
 ```bash
 # 设置您的首选默认值
 kiro-cli settings knowledge.indexType Fast   # 或 Best
+
+# 这将使用您的默认设置
+/knowledge add "my-project" /path/to/project
 ```
 
 ### 模式过滤
@@ -115,6 +118,21 @@ kiro-cli settings knowledge.indexType Fast   # 或 Best
 - `**/*.py` - 递归匹配所有 Python 文件
 - `target/**` - target 目录中的所有内容
 - `node_modules/**` - node_modules 中的所有内容
+
+**默认模式行为：**
+
+当您不指定模式时，系统使用配置的默认值：
+
+```bash
+kiro-cli settings knowledge.defaultIncludePatterns '["**/*.rs", "**/*.py"]'
+kiro-cli settings knowledge.defaultExcludePatterns '["target/**", "__pycache__/**"]'
+
+# 使用默认模式
+/knowledge add "my-project" /path/to/project
+
+# 覆盖默认值
+/knowledge add "docs-only" /path/to/project --include "**/*.md"
+```
 
 ### 支持的文件类型
 
@@ -188,7 +206,7 @@ kiro-cli settings knowledge.indexType Fast
 
 ## 特定代理的知识库
 
-每个代理维护自己隔离的知识库，确保知识上下文范围限定在您正在使用的特定代理。
+每个代理维护自己隔离的知识库，确保知识上下文范围限定在您正在使用的特定代理。这提供了更好的组织性并防止知识冲突。
 
 ### 文件夹结构
 
@@ -196,6 +214,55 @@ kiro-cli settings knowledge.indexType Fast
 - **macOS**: `~/Library/Application Support/kiro-cli/knowledge_bases/`
 - **Linux**: `~/.local/share/kiro-cli/knowledge_bases/`
 - **Windows**: `%LOCALAPPDATA%\kiro-cli\knowledge_bases\`
+
+```
+knowledge_bases/
+├── kiro_cli_default/          # 默认代理
+│   ├── contexts.json
+│   ├── context-id-1/
+│   │   ├── data.json
+│   │   └── bm25_data.json
+│   └── context-id-2/
+│       └── data.json
+├── my-custom-agent_<code>/    # 自定义代理
+│   ├── contexts.json
+│   └── context-id-3/
+│       └── data.json
+└── another-agent_<code>/      # 另一个代理
+    ├── contexts.json
+    └── context-id-4/
+        └── data.json
+```
+
+### 代理隔离如何工作
+
+- **自动范围限定**：`/knowledge` 命令操作当前代理的知识库
+- **无跨代理访问**：代理 A 无法访问代理 B 的知识
+- **独立配置**：每个代理有不同的设置和上下文
+- **迁移支持**：遗留知识库迁移到默认代理
+
+### 代理切换
+
+当您切换代理时，知识命令自动与该代理的知识库一起工作。
+
+```bash
+# 使用默认代理
+/knowledge add /path/to/docs
+
+# 切换到自定义代理
+kiro chat --agent my-custom-agent
+
+# 为 my-custom-agent 创建独立的知识库
+/knowledge add /path/to/agent/docs
+
+# 切换回默认代理
+kiro chat
+
+# 只看到原始文档，而不是代理特定的文档
+/knowledge show
+```
+
+> **信息**: 代理配置中定义的知识库资源在会话初始化和代理切换时自动同步，因此代理定义的知识库无需手动干预即可索引。
 
 ## 工作原理
 
@@ -231,18 +298,40 @@ kiro-cli settings knowledge.indexType Fast
 - 如果初始搜索不起作用，尝试不同的措辞
 - 提示 Kiro 使用工具："使用你的知识库查找数据库连接配置"
 
+### 管理大型项目
+
+- 添加项目目录而不是单个文件
+- 使用模式避免构建产物：`--exclude "target/**" --exclude "node_modules/**"`
+- 使用 `/knowledge show` 监控索引进度
+- 考虑将大型项目分解为逻辑子目录
+
+### 模式过滤最佳实践
+
+- **要具体**：使用精确的模式避免过度包含
+- **排除构建产物**：始终排除 `target/**`、`node_modules/**`、`.git/**`
+- **包含相关扩展名**：专注于您需要的文件类型
+- **测试模式**：在大型操作之前验证模式是否匹配预期的文件
+
 ## 限制
 
 ### 文件类型支持
 
 - 二进制文件在索引时被忽略
 - 非常大的文件可能被分块，可能分割相关内容
+- 某些特殊格式可能无法最佳地提取内容
 
 ### 性能考虑
 
 - 大目录可能需要大量时间来索引
 - 后台操作受并发处理限制
 - 搜索性能因知识库大小而异
+- 模式过滤可以改善大型目录的性能
+
+### 存储和持久化
+
+- 没有显式的存储大小限制，但存在实际限制
+- 没有自动清理旧的或未使用的上下文
+- 清除操作不可逆，没有备份
 
 ## 故障排除
 
@@ -252,15 +341,38 @@ kiro-cli settings knowledge.indexType Fast
 2. **验证排除模式**：确保它们没有过滤掉所需的文件
 3. **检查文件类型**：确保文件有支持的扩展名
 4. **监控进度**：使用 `/knowledge show` 检查索引状态
+5. **验证路径**：确保路径存在且可访问
+6. **检查错误**：查看 CLI 输出中的错误消息
 
 ### 搜索找不到预期结果
 
 1. **等待索引完成**：使用 `/knowledge show` 确保完成
 2. **尝试不同的查询**：使用各种措辞和关键字
 3. **验证内容**：用 `/knowledge show` 确认内容已添加
+4. **检查文件类型**：不支持的类型不会有可搜索的内容
+
+### 性能问题
+
+1. **检查操作**：使用 `/knowledge show` 查看进度
+2. **如需要则取消**：使用 `/knowledge cancel` 取消有问题的操作
+3. **添加较小的块**：考虑子目录而不是整个项目
+4. **使用更好的模式**：排除不必要的文件
+5. **调整设置**：降低 `maxFiles` 或 `chunkSize` 以获得更好的性能
+
+### 模式问题
+
+1. **测试模式**：从简单开始，然后添加复杂性
+2. **检查语法**：确保 glob 模式使用正确的语法（`**` 用于递归）
+3. **验证路径**：确保模式匹配实际的文件路径
+4. **使用绝对模式**：考虑使用完整路径以提高精度
 
 ## 下一步
 
 - [上下文管理](../chat/context.md)
 - [自定义代理](../custom-agents.md)
+- [设置配置](../reference/5_settings.md)
 - [实验性功能](./0_experimental.md)
+
+---
+
+页面更新时间: 2026年4月24日

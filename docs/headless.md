@@ -85,3 +85,13 @@ cat build-error.log | kiro-cli chat --no-interactive "解释此构建失败并�
 - 无法进行会话中用户输入。
 - 交互式斜杠命令(`/model` 选择器、`/agent` 选择器)不可用。
 - 终端 UI 功能已禁用。
+
+## 相关
+
+- [身份验证](/docs/cli/authentication) — API 密钥设置和身份验证方法
+- [退出代码](/docs/cli/reference/exit-codes) — 在脚本中处理故障
+- [CLI 命令](/docs/cli/reference/cli-commands) — 完整 CLI 标志参考
+
+---
+
+页面更新时间: 2026年4月13日

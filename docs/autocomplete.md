@@ -116,3 +116,7 @@ kiro-cli inline show-customizations
 2. 如果禁用则启用: `kiro-cli inline enable`
 3. 验证 shell 兼容性
 4. 检查终端模拟器支持
+
+---
+
+页面更新时间: 2025年11月16日

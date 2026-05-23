@@ -229,10 +229,17 @@ Create an issue in my repository about the login bug
 - 查看 [GitHub MCP 组织](https://github.com/modelcontextprotocol)
 - 在 npm 或 PyPI 上搜索 **mcp-server**
 
+## 在此期间
+
+在我们准备全面示例的同时，您可以：
+- 查看[安全最佳实践](5_security.md)以进行安全集成
+- 访问[官方 MCP 文档](https://modelcontextprotocol.io/introduction)
+- 返回 [MCP 概述](0_mcp.md)
+
 ## 下一步
 
-- 查看 [安全最佳实践](/docs/cli/mcp/security)
-- 返回 [MCP 概述](/docs/cli/mcp)
+- 查看 [安全最佳实践](5_security.md)
+- 返回 [MCP 概述](0_mcp.md)
 
 ---
 

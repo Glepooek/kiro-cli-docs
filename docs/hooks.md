@@ -121,6 +121,29 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 
 在工具执行之后运行,可以访问工具结果。
 
+**Hook 事件**
+
+```json
+{
+  "hook_event_name": "postToolUse",
+  "cwd": "/current/working/directory",
+  "session_id": "abc123-def456-789",
+  "tool_name": "read",
+  "tool_input": {
+    "operations": [
+      {
+        "mode": "Line",
+        "path": "/current/working/directory/docs/hooks.md"
+      }
+    ]
+  },
+  "tool_response": {
+    "success": true,
+    "result": ["# Hooks\n\nHooks allow you to execute..."]
+  }
+}
+```
+
 **退出代码行为:**
 - **0**: Hook 成功。
 - **其他**: 向用户显示 STDERR 警告。工具已运行。
@@ -129,7 +152,39 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 
 当助手完成响应用户时运行(在每个轮次结束时)。这对于运行后处理任务(如代码编译、测试、格式化或助手响应后的清理)很有用。
 
+**Hook 事件**
+
+```json
+{
+  "hook_event_name": "stop",
+  "cwd": "/current/working/directory",
+  "session_id": "abc123-def456-789"
+}
+```
+
+**退出代码行为:**
+- **0**: Hook 成功。
+- **其他**: 向用户显示 STDERR 警告。
+
 **注意**: Stop hooks 不使用 matcher,因为它们与特定工具无关。
+
+### MCP 示例
+
+对于 MCP 工具,工具名称包含完整的命名空间格式,包括 MCP 服务器名称:
+
+**Hook 事件**
+
+```json
+{
+  "hook_event_name": "preToolUse",
+  "cwd": "/current/working/directory",
+  "session_id": "abc123-def456-789",
+  "tool_name": "@postgres/query",
+  "tool_input": {
+    "sql": "SELECT * FROM orders LIMIT 10;"
+  }
+}
+```
 
 ## 超时
 
@@ -141,3 +196,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 - `0`: 不缓存(默认)
 - `> 0`: 缓存成功结果指定的秒数
 - AgentSpawn hooks 永远不会缓存
+
+---
+
+页面更新时间: 2026年4月13日

@@ -67,6 +67,20 @@
 - **绝对路径**: 按原样使用
   - `"file:///home/user/prompts/agent.md"` → 文件的绝对路径
 
+#### 文件 URI 示例
+
+```json
+{
+  "prompt": "file://./prompts/aws-expert.md"
+}
+```
+
+```json
+{
+  "prompt": "file:///Users/developer/shared-prompts/rust-specialist.md"
+}
+```
+
 ## McpServers 字段
 
 `mcpServers` 字段指定代理有权访问哪些模型上下文协议（MCP）服务器。每个服务器使用命令和可选参数定义。
@@ -114,6 +128,40 @@
       "oauth": {
         "redirectUri": "127.0.0.1:8080",
         "oauthScopes": ["repo", "user"]
+      }
+    }
+  }
+}
+```
+
+如果遇到 OAuth 范围相关的错误，您可以在 MCP 服务器配置中配置空数组来绕过范围要求：
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.github.com/mcp",
+      "oauth": {
+        "redirectUri": "127.0.0.1:8080",
+        "oauthScopes": []
+      }
+    }
+  }
+}
+```
+
+对于需要预注册 OAuth 应用的服务，将 `oauth.clientId` 设置为您的应用 ID：
+
+```json
+{
+  "mcpServers": {
+    "slack": {
+      "type": "http",
+      "url": "https://mcp.slack.com/mcp",
+      "oauth": {
+        "clientId": "your-slack-app-client-id",
+        "oauthScopes": ["search:read", "channels:read"]
       }
     }
   }
@@ -260,12 +308,19 @@
     "write": {
       "allowedPaths": ["~/**"]
     },
+    "shell": {
+      "allowedCommands": ["git status", "git fetch"],
+      "deniedCommands": ["git commit .*", "git push .*"],
+      "autoAllowReadonly": true
+    },
     "@git/git_status": {
       "git_user": "$GIT_USER"
     }
   }
 }
 ```
+
+有关工具特定的选项，请参阅[内置工具文档](../reference/3_built-in-tools.md)。
 
 
 
@@ -413,7 +468,7 @@ description: DynamoDB 数据建模最佳实践指南。在设计或分析 Dynamo
 每个 hook 定义包含：
 
 - `command`（必需）: 要执行的命令
-- `matcher`（可选）: 用于 `preToolUse` 和 `postToolUse` hook 匹配工具名称的模式
+- `matcher`（可选）: 用于 `preToolUse` 和 `postToolUse` hook 匹配工具名称的模式。Hook matcher 使用内部工具名称（`fs_read`、`fs_write`、`execute_bash`、`use_aws`）而不是简化名称。有关可用的工具名称，请参阅[内置工具文档](../reference/3_built-in-tools.md)。
 
 可用的 hook 触发器：
 
@@ -422,6 +477,8 @@ description: DynamoDB 数据建模最佳实践指南。在设计或分析 Dynamo
 - `preToolUse`: 工具执行前触发。可以阻止工具使用
 - `postToolUse`: 工具执行后触发
 - `stop`: 助手完成响应时触发
+
+有关 hook 行为、输入/输出格式和示例的详细信息，请参阅 [Hooks 文档](../hooks.md)。
 
 ## includeMcpJson 字段
 
@@ -675,4 +732,10 @@ my-project/
 ## 下一步
 
 - [创建自定义代理](1_creating.md)
+- [内置工具参考](../reference/3_built-in-tools.md)
+- [Hooks 文档](../hooks.md)
 - [代理示例](3_examples.md)
+
+---
+
+页面更新时间: 2026年5月8日

@@ -238,6 +238,19 @@ kiro-cli settings chat.tangentModeKey t
 
 在提示中寻找 `↯` 符号。使用 `/tangent` 退出并返回主对话。
 
+### 意外丢弃重要信息
+
+如果在没有使用 `tail` 的情况下退出切线模式并丢失重要信息：
+1. 遗憾的是，切线对话无法恢复
+2. 您需要在主对话中重新提问
+3. 以后考虑使用 `/tangent tail` 来保留重要的问答对
+
+## 相关功能
+
+- **Introspect**: Kiro CLI 帮助（如果配置则自动进入切线模式）
+- **实验功能**: 使用 `/experiment` 管理实验性功能
+- **检查点**: 类似概念但用于文件更改
+
 ## 最佳实践
 
 ### 工作流集成
@@ -248,8 +261,29 @@ kiro-cli settings chat.tangentModeKey t
 4. **决定是否尾部**：如果切线有用，使用 `/tangent tail`
 5. **继续主任务**：返回您的主要任务
 
+### 示例工作流
+
+```
+> 帮我重构这个 React 组件
+
+# 主对话开始...
+
+> /tangent
+↯ > useMemo 和 useCallback 有什么区别？
+
+# 获取澄清...
+
+↯ > /tangent tail  # 这很有用，保留它
+
+> 现在我明白了。让我用 useMemo 来处理昂贵的计算...
+```
+
 ## 下一步
 
 - [实验性功能概述](./0_experimental.md)
 - [检查点](./5_checkpointing.md)
 - [设置配置](../settings.md)
+
+---
+
+页面更新时间: 2025年11月18日
