@@ -23,7 +23,7 @@ Steering 文件可以创建为工作区作用域或全局作用域。
 
 全局 steering 文件位于主目录的 `~/.kiro/steering/` 中，应用于所有工作区。全局 steering 文件可用于告知 Kiro 适用于*所有*工作区的约定。
 
-当全局和工作区 steering 之间存在冲突指令时，Kiro 将优先使用工作区 steering 指令。这允许您指定通常适用于所有工作区的全局指令，同时保留为特定工作区覆盖这些指令的能力。
+当全局和工作区 steering 之间存在冲突指令时，Kiro 将优先使用工作区 steering 指令。这允许您指定通常适用于所有工作区的全局指令，同时保留为特定工作区覆盖这些指令的能力。`<-工作区、全局steering的优先级`
 
 ### 团队 Steering
 
@@ -68,7 +68,7 @@ Steering 文件可以创建为工作区作用域或全局作用域。
 }
 ```
 
-此 glob 模式确保使用代理时加载 steering 目录中的所有 markdown 文件。有关完整的配置示例，请参阅[自定义代理文档](/docs/cli/custom-agents/creating/#agent-configuration-file)。
+此 glob 模式确保使用代理时加载 steering 目录中的所有 markdown 文件。有关完整的配置示例，请参阅[自定义代理文档](../docs/custom-agents/1_creating.md/#agent-configuration-file)。
 
 ## AGENTS.md
 
@@ -81,6 +81,7 @@ Kiro 支持通过 [AGENTS.md](https://agents.md/) 标准提供 steering 指令�
 **保持文件专注** - 每个文件一个领域 - API 设计、测试或部署流程。
 
 **使用清晰的命名**
+
 - `api-rest-conventions.md` - REST API 标准
 - `testing-unit-patterns.md` - 单元测试方法
 - `components-form-validation.md` - 表单组件标准
@@ -92,6 +93,7 @@ Kiro 支持通过 [AGENTS.md](https://agents.md/) 标准提供 steering 指令�
 **安全优先** - 切勿包含 API 密钥、密码或敏感数据。Steering 文件是代码库的一部分。
 
 **定期维护**
+
 - 在冲刺规划和架构变更期间进行审查
 - 重构后测试文件引用
 - 像代码变更一样对待 steering 变更 - 需要审查

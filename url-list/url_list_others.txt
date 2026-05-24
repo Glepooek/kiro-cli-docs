@@ -1,0 +1,8 @@
+# docs/
+https://kiro.dev/docs/cli/steering/ steering.md
+https://kiro.dev/docs/cli/skills/ agent-skills.md
+https://kiro.dev/docs/cli/acp/ acp.md
+https://kiro.dev/docs/cli/headless/ headless.md
+https://kiro.dev/docs/cli/hooks/ hooks.md
+https://kiro.dev/docs/cli/autocomplete/ autocomplete.md
+https://kiro.dev/docs/cli/code-intelligence/ code-intelligence.md

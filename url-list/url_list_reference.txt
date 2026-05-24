@@ -1,0 +1,6 @@
+# docs/reference
+https://kiro.dev/docs/cli/reference/cli-commands/ 1_cli-commands.md
+https://kiro.dev/docs/cli/reference/slash-commands/ 2_slash-commands.md
+https://kiro.dev/docs/cli/reference/built-in-tools/ 3_built-in-tools.md
+https://kiro.dev/docs/cli/reference/exit-codes/ 4_exit-codes.md
+https://kiro.dev/docs/cli/reference/settings/ 5_settings.md

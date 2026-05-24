@@ -1,0 +1,7 @@
+# docs/mcp
+https://kiro.dev/docs/cli/mcp/ 0_mcp.md
+https://kiro.dev/docs/cli/mcp/configuration/ 1_configuration.md
+https://kiro.dev/docs/cli/mcp/registry/ 2_registry.md
+https://kiro.dev/docs/cli/mcp/tool-search/ 3_tool-search.md
+https://kiro.dev/docs/cli/mcp/examples/ 4_examples.md
+https://kiro.dev/docs/cli/mcp/security/ 5_security.md

@@ -1,0 +1,8 @@
+# docs/experimental
+https://kiro.dev/docs/cli/experimental/ 0_experimental.md
+https://kiro.dev/docs/cli/experimental/knowledge-management/ 1_knowledge-management.md
+https://kiro.dev/docs/cli/experimental/tangent-mode/ 2_tangent-mode.md
+https://kiro.dev/docs/cli/experimental/todo-lists/ 3_todo-lists.md
+https://kiro.dev/docs/cli/experimental/thinking/ 4_thinking.md
+https://kiro.dev/docs/cli/experimental/checkpointing/ 5_checkpointing.md
+https://kiro.dev/docs/cli/experimental/delegate/ 6_delegate.md

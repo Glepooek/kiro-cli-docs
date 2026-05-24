@@ -1,0 +1,6 @@
+# docs/custom-agents
+https://kiro.dev/docs/cli/custom-agents/ 0_custom-agents.md
+https://kiro.dev/docs/cli/custom-agents/creating/ 1_creating.md
+https://kiro.dev/docs/cli/custom-agents/configuration-reference/ 2_configuration-reference.md
+https://kiro.dev/docs/cli/custom-agents/examples/ 3_examples.md
+https://kiro.dev/docs/cli/custom-agents/troubleshooting/ 4_troubleshooting.md
