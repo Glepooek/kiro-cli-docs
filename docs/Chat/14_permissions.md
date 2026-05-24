@@ -40,7 +40,7 @@ Kiro> /tools trust-all
 
 > **警告**
 >
-> 使用 `/tools trust-all` 存在风险。更多信息请参见[安全使用 /tools trust-all](/docs/cli/chat/security/#using-tools-trust-all-safely)。
+> 使用 `/tools trust-all` 存在风险。更多信息请参见[安全使用 /tools trust-all](/docs/Chat/17_security.md/#using-tools-trust-all-safely)。
 
 > **注意**
 >
@@ -83,7 +83,7 @@ Kiro 包含以下内置工具:
 
 选择层级后，Kiro 确认信任模式（例如 `✓ 已信任: git pull --rebase`）。选择器仅显示有意义的不同层级 — 如果命令没有子命令，则跳过部分层级。对于链式命令（管道、`&&`），Kiro 为链中的每个命令生成信任模式并进行去重。
 
-信任模式在会话期间持久化，并作为正则表达式存储在代理的 `allowedCommands` 设置中。有关 `allowedCommands` 如何工作的更多信息，请参见 [Shell 工具设置](/docs/cli/reference/built-in-tools/#execute-shell-commands)。
+信任模式在会话期间持久化，并作为正则表达式存储在代理的 `allowedCommands` 设置中。有关 `allowedCommands` 如何工作的更多信息，请参见 [Shell 工具设置](../reference/3_built-in-tools.md/#execute-shell-commands)。
 
 > **警告**
 >

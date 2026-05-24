@@ -1,12 +1,13 @@
 # Agent Skills
 
-Skills 是可移植的指令包，用于扩展 Kiro 知道如何做的事情。每个技能包含特定工作流程的指令，无论是审查拉取请求、部署基础设施，还是遵循团队的编码标准。
+Skills 是可移植的指令包，用于扩展 Kiro 的可执行能力。每个技能包含特定工作流程的指令，无论是审查拉取请求、部署基础设施，还是遵循团队的编码标准。
 
 Skills 遵循开放的 [Agent Skills](https://agentskills.io) 标准，使其可以在工具和团队之间共享。
 
 ## Skills 如何工作
 
 当您开始聊天会话时，Kiro 通过读取名称和描述来发现可用的技能。技能可以通过两种方式激活：
+
 - **自动**：Kiro 将您的请求与技能描述匹配，并加载相关技能。
 - **作为斜杠命令**：输入 `/` 后跟技能名称直接调用。例如，名为 `pr-review` 的技能变成 `/pr-review` 斜杠命令。
 
@@ -32,7 +33,7 @@ I'll review the PR using the security checklist...
 I'll review the PR using the security checklist, with extra attention to the authentication changes.
 ```
 
-有关详细信息，请参阅[基于技能的斜杠命令](/docs/cli/reference/slash-commands/#skill-based-slash-commands)。
+有关详细信息，请参阅[基于技能的斜杠命令](../docs/reference/2_slash-commands.md/#skill-based-slash-commands)。
 
 要查看当前会话中可用的技能，使用 `/context show` 命令或直接询问 Kiro：
 
@@ -44,12 +45,12 @@ I'll review the PR using the security checklist, with extra attention to the aut
 
 技能可以存储在两个地方：
 
-| 位置 | 作用域 | 用例 |
-|------|--------|------|
-| `.kiro/skills/` | 工作区 | 项目特定工作流程、团队约定 |
-| `~/.kiro/skills/` | 全局 | 跨所有项目的个人工作流程 |
+| 位置              | 作用域 | 用例                       |
+| ----------------- | ------ | -------------------------- |
+| `.kiro/skills/`   | 工作区 | 项目特定工作流程、团队约定 |
+| `~/.kiro/skills/` | 全局   | 跨所有项目的个人工作流程   |
 
-当技能同名时，工作区技能优先于全局技能。
+`当技能同名时，工作区技能优先于全局技能。`
 
 ### 默认代理
 
@@ -62,10 +63,7 @@ I'll review the PR using the security checklist, with extra attention to the aut
 ```json
 {
   "name": "my-agent",
-  "resources": [
-    "skill://.kiro/skills/*/SKILL.md",
-    "skill://~/.kiro/skills/*/SKILL.md"
-  ]
+  "resources": ["skill://.kiro/skills/*/SKILL.md", "skill://~/.kiro/skills/*/SKILL.md"]
 }
 ```
 
@@ -111,10 +109,10 @@ When reviewing a pull request:
 
 ### Frontmatter 字段
 
-| 字段 | 必需 | 描述 |
-|------|------|------|
-| `name` | 是 | 技能标识符。仅限小写字母、数字和连字符。最多 64 个字符。 |
-| `description` | 是 | 何时激活此技能。Kiro 将此与您的请求匹配。最多 1024 个字符。 |
+| 字段          | 必需 | 描述                                                        |
+| ------------- | ---- | ----------------------------------------------------------- |
+| `name`        | 是   | 技能标识符。仅限小写字母、数字和连字符。最多 64 个字符。    |
+| `description` | 是   | 何时激活此技能。Kiro 将此与您的请求匹配。最多 1024 个字符。 |
 
 `description` 字段决定 Kiro 何时激活技能。包含与您表述请求方式匹配的特定关键词和操作。
 
@@ -136,7 +134,7 @@ aws-deployment/
 For ECS deployments, follow the guide in `references/ecs-guide.md`.
 ```
 
-Kiro 仅在指令指示时加载引用文件。
+Kiro 仅在指令下达时加载引用文件。
 
 ## 示例
 
@@ -172,6 +170,7 @@ description: Deploy AWS CDK stacks with best practices. Use when deploying infra
 ## Rollback procedure
 
 If deployment fails:
+
 1. Check CloudFormation console for the specific error
 2. Run `cdk destroy` only if the stack is in a failed state
 3. Fix the issue and redeploy
@@ -188,8 +187,9 @@ I'll follow the deployment workflow. First, let me synthesize the templates...
 ## 最佳实践
 
 **编写精确的描述。** 描述决定 Kiro 何时激活技能：
-- 好：`Review pull requests for security vulnerabilities and test coverage. Use when reviewing PRs or preparing code for review.`
-- 模糊：`Helps with code review`
+
+- Good：`Review pull requests for security vulnerabilities and test coverage. Use when reviewing PRs or preparing code for review.`
+- Vague（模糊）：`Helps with code review`
 
 **保持 SKILL.md 可操作。** 将详细的参考材料放在 `references/` 文件中。
 
@@ -199,19 +199,19 @@ I'll follow the deployment workflow. First, let me synthesize the templates...
 
 ## 故障排除
 
-| 问题 | 解决方案 |
-|------|----------|
-| 技能未激活 | 使描述更具体，包含与请求匹配的关键词 |
-| 斜杠命令未找到 | 验证技能文件夹名称与您输入的内容匹配。技能必须有有效的带 frontmatter 的 SKILL.md。检查 `/context show` 确认技能已加载 |
-| 技能未找到 | 验证 SKILL.md 存在且具有有效的 frontmatter |
+| 问题               | 解决方案 |
+| ------------------ | ---------------------------------------------------------- |
+| 技能未激活         | 使描述更具体，包含与请求匹配的关键词 |
+| 斜杠命令未找到     | 验证技能文件夹名称与您输入的内容匹配。技能必须有有效的带 frontmatter 的 SKILL.md。检查 `/context show` 确认技能已加载 |
+| 技能未找到         | 验证 SKILL.md 存在且具有有效的 frontmatter |
 | 自定义代理缺少技能 | 将 `skill://` URI 添加到代理的 `resources` 字段 |
-| 错误的技能激活 | 用更具体的关键词区分描述 |
+| 错误的技能激活     | 用更具体的关键词区分描述 |
 
 ## 相关
 
-- [斜杠命令](/docs/cli/reference/slash-commands/)：基于技能的斜杠命令和所有其他斜杠命令
-- [Steering](/docs/cli/steering/)：项目特定的上下文和约定
-- [自定义代理](/docs/cli/custom-agents/)：代理配置和资源
+- [斜杠命令](../docs/reference/2_slash-commands.md)：基于技能的斜杠命令和所有其他斜杠命令
+- [Steering](../docs/steering.md)：项目特定的上下文和约定
+- [自定义代理](../docs/custom-agents/)：代理配置和资源
 - [Agent Skills 规范](https://agentskills.io/specification)：完整格式详情
 
 ---

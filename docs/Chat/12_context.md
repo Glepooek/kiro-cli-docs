@@ -6,7 +6,7 @@ Kiro 提供三种提供上下文的方式，每种针对不同的用例优化:
 
 | 方法 | 上下文窗口影响 | 持久性 | 最适合 |
 |------|---------------|--------|--------|
-| 代理资源 | 始终活跃（消耗 token） | 跨会话持久 | 基本项目文件、标准、配置 |
+| Agent资源 | 始终活跃（消耗 token） | 跨会话持久 | 基本项目文件、标准、配置 |
 | 技能 | 按需 | 跨会话持久 | 大型指南、参考文档、专业知识 |
 | 会话上下文 | 始终活跃（消耗 token） | 仅当前会话 | 临时文件、快速实验 |
 | 知识库 | 仅在搜索时 | 跨会话持久 | 大型代码库、大量文档 |
@@ -18,24 +18,24 @@ Kiro 提供三种提供上下文的方式，每种针对不同的用例优化:
      - 是 → 使用知识库
      - 否 → 继续步骤 2
 2. 您是否需要在每次对话中使用此上下文？
-   - 是 → 使用代理资源
+   - 是 → 使用Agent资源
    - 否 → 使用会话上下文
 
 ### 快速参考
 
-- 基本项目文件（README、配置、标准）→ 代理资源
+- 基本项目文件（README、配置、标准）→ Agent资源
 - 大型代码库或文档集 → 知识库
 - 当前任务的临时文件 → 会话上下文
 
 ## 理解上下文窗口影响
 
 Kiro 在每次会话中自动将您的工作目录和操作系统作为上下文包含。您不需要配置这个。
-- 上下文文件和代理资源在每次请求时都会消耗上下文窗口的 token，无论是否被引用。
+- 上下文文件和Agent资源在每次请求时都会消耗上下文窗口的 token，无论是否被引用。
 
 ```bash
 > /context show
 
-Agent 
+Agent
   - .kiro/steering/**/*.md  <project-root>/.kiro/steering/product.md
 <project-root>/.kiro/steering/structure.md
 <project-root>/.kiro/steering/tech.md
@@ -57,7 +57,7 @@ Context files total: 0.5% of context window
 ```
 
 输出显示:
-- **Agent**: 来自代理 resources 字段的持久上下文
+- **Agent**: 来自agent resources 字段的持久上下文
 - **Session**: 当前会话中添加的临时上下文
 
 - 上下文文件限制为模型上下文窗口的 75%。超过此限制的文件会自动丢弃。
@@ -67,11 +67,11 @@ Context files total: 0.5% of context window
 
 上下文文件包含您希望 Kiro 在对话中考虑的信息。这些可以包括项目需求、编码标准、开发规则或任何帮助 Kiro 提供更相关响应的信息。
 
-### 通过代理资源配置持久上下文
+### 通过Agent资源配置持久上下文
 
-配置上下文的推荐方法是通过代理配置文件中的 resources 字段。这会创建每次使用代理时可用的持久上下文。
+配置上下文的推荐方法是通过agent配置文件中的 resources 字段。这会创建每次使用代理时可用的持久上下文。
 
-在代理配置的 resources 数组中添加文件路径或 glob 模式:
+在agent配置的 resources 数组中添加文件路径或 glob 模式:
 
 ```json
 {
@@ -110,7 +110,7 @@ Added 1 path(s) to context.
 Added 3 path(s) to context.
 ```
 
-要使上下文更改永久生效，请改为将文件添加到代理的 resources 字段。更多信息请参见通过代理资源配置持久上下文。
+要使上下文更改永久生效，请改为将文件添加到agent resources 字段。更多信息请参见通过Agent资源配置持久上下文。
 
 ### 知识库上下文（用于大型数据集）
 
@@ -184,13 +184,13 @@ Cleared context
 Note: Context modifications via slash command is temporary.
 ```
 
-注意: 您不能使用 /context 命令移除代理定义的上下文。要永久移除上下文，请编辑代理的 resources 字段。
+注意: 您不能使用 /context 命令移除agent定义的上下文。要永久移除上下文，请编辑agent resources 字段。
 
 ## 上下文管理操作
 
 以下是主动管理上下文窗口的一些常见原因:
 
-1. 如果您发现自己在每次会话中使用 `/context add` 命令重复添加相同的上下文文件，请考虑将它们移到代理的 resources 字段以持久化:
+1. 如果您发现自己在每次会话中使用 `/context add` 命令重复添加相同的上下文文件，请考虑将它们移到agent resources 字段以持久化:
 
 ```bash
 # 与其每次会话运行这些命令：

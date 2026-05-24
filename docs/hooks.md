@@ -4,7 +4,7 @@ Hooks 允许您在 Agent 生命周期和工具执行的特定点执行自定义�
 
 ## 定义 Hooks
 
-Hooks 在 Agent 配置文件中定义。有关完整的语法和示例,请参阅 Agent 配置参考。
+Hooks 在 Agent 配置文件中定义。有关完整的语法和示例,请参阅[Agent配置参考](../docs/custom-agents/2_configuration-reference.md)。
 
 ## Hook 事件
 
@@ -19,6 +19,7 @@ Hooks 通过 STDIN 接收 JSON 格式的 hook 事件:
 ```
 
 对于工具相关的 hooks,包含额外的字段:
+
 - `session_id`: 当前会话 UUID(在所有 hook 事件中可用)
 - `tool_name`: 正在执行的工具名称
 - `tool_input`: 工具特定的参数(请参阅各个工具文档)
@@ -67,6 +68,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ```
 
 **退出代码行为:**
+
 - **0**: Hook 成功,STDOUT 添加到 Agent 的上下文
 - **其他**: 向用户显示 STDERR 警告
 
@@ -86,6 +88,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ```
 
 **退出代码行为:**
+
 - **0**: Hook 成功,STDOUT 添加到 Agent 的上下文
 - **其他**: 向用户显示 STDERR 警告
 
@@ -113,6 +116,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ```
 
 **退出代码行为:**
+
 - **0**: 允许工具执行。
 - **2**: 阻止工具执行,将 STDERR 返回给 LLM。
 - **其他**: 向用户显示 STDERR 警告,允许工具执行。
@@ -145,6 +149,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ```
 
 **退出代码行为:**
+
 - **0**: Hook 成功。
 - **其他**: 向用户显示 STDERR 警告。工具已运行。
 
@@ -163,6 +168,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ```
 
 **退出代码行为:**
+
 - **0**: Hook 成功。
 - **其他**: 向用户显示 STDERR 警告。
 
@@ -193,6 +199,7 @@ Hook matcher 支持规范名称(`fs_read`、`fs_write`、`execute_bash`、`use_a
 ## 缓存
 
 成功的 hook 结果基于 `cache_ttl_seconds` 缓存:
+
 - `0`: 不缓存(默认)
 - `> 0`: 缓存成功结果指定的秒数
 - AgentSpawn hooks 永远不会缓存

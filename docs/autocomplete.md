@@ -1,6 +1,7 @@
 # 补全和自动完成
 
 Kiro CLI 提供两个 AI 驱动的辅助功能,帮助您在终端中更高效地工作:
+
 - **自动完成下拉菜单**: 显示可用命令选项的图形菜单
 - **行内建议**: 输入时出现的灰色"幽灵文本"
 
@@ -13,9 +14,10 @@ Kiro CLI 提供两个 AI 驱动的辅助功能,帮助您在终端中更高效地
 ### 使用自动完成
 
 安装 Kiro CLI 后,自动完成下拉菜单会自动启用:
+
 1. 打开终端或命令提示符
 2. 开始输入命令
-3. 将出现一个图形菜单,显示可用选项
+3. 将出现一个图形菜单，显示可用选项
 4. 使用箭头键导航建议
 5. 按 **Tab** 或 **Enter** 选择选项
 
@@ -30,7 +32,7 @@ kiro-cli settings autocomplete.disable true   # 禁用
 
 # 更改主题
 kiro-cli theme dark
-kiro-cli theme light  
+kiro-cli theme light
 kiro-cli theme system
 
 # 查看当前主题
@@ -47,8 +49,9 @@ kiro-cli theme --list
 ### 使用行内建议
 
 行内建议默认启用:
+
 1. 开始输入命令
-2. 将出现灰色幽灵文本,显示潜在的补全
+2. 将出现灰色幽灵文本，显示潜在的补全
 3. 按 **右箭头键** 或 **Tab** 接受
 4. 继续输入以忽略建议
 
@@ -60,7 +63,7 @@ kiro-cli theme --list
 # 启用行内建议
 kiro-cli inline enable
 
-# 禁用行内建议  
+# 禁用行内建议
 kiro-cli inline disable
 
 # 检查当前状态
@@ -104,6 +107,7 @@ kiro-cli inline show-customizations
 ### 自动完成不工作
 
 如果自动完成未出现:
+
 1. 验证安装: `kiro-cli --version`
 2. 检查是否禁用: `kiro-cli settings autocomplete.disable`
 3. 重启终端
@@ -112,6 +116,7 @@ kiro-cli inline show-customizations
 ### 行内建议问题
 
 如果行内建议不工作:
+
 1. 检查状态: `kiro-cli inline status`
 2. 如果禁用则启用: `kiro-cli inline enable`
 3. 验证 shell 兼容性
